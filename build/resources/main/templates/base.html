@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap.min.css}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+    <title>Hello, Pybo!</title>
+</head>
+<body>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<div th:replace="fragments/navbar :: navbar"></div>
+<div th:fragment="content">
+    <!-- 이 부분은 다른 템플릿에서 덮어씁니다 -->
+    <div th:insert="::content"></div>
+</div>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- jQuery JS -->
+<script th:src="@{/static/jquery-3.4.1.min.js}"></script>
+<!-- Bootstrap JS -->
+<script th:src="@{/static/bootstrap.min.js}"></script>
+<!-- 자바스크립트 Start -->
+<div th:fragment="script">
+    <!-- 이 부분은 다른 템플릿에서 덮어씁니다 -->
+    <div th:insert="::script"></div>
+</div>
+<!-- 자바스크립트 End -->
+</body>
+</html>

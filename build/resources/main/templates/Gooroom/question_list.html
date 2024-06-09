@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AD project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .table th, .table td {
+            text-align: center; /* 모든 텍스트 중앙 정렬 */
+            vertical-align: middle; /* 수직 중앙 정렬 */
+        }
+        .btn-align {
+            display: flex;
+            justify-content: flex-start; /* 버튼을 왼쪽 끝에 배치 */
+            padding-top: 15px; /* 버튼을 테이블 아래로 떨어뜨림 */
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <div class="container my-3">
+        <h1 class="text-center">질문 목록</h1>
+        <table class="table">
+            <thead>
+            <tr class="text-center thead-dark">
+                <th>번호</th>
+                <th style="width:50%">제목</th>
+                <th>글쓴이</th>
+                <th>작성일시</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${questionList.empty}">
+                <td colspan="4" class="text-center">질문이 없습니다.</td>
+            </tr>
+            <tr th:each="question, questionStat : ${questionList}">
+                <td th:text="${question.getQuestion_id()}"></td>
+                <td>
+                    <a th:href="@{/questions/{question_id}(question_id=${question.getQuestion_id()})}"
+                       th:text="${question.getSubject()}"></a>
+                </td>
+                <td th:text="${question.getAuthor()}"></td>
+                <td th:text="${question.getCreate_date()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="btn-align">
+            <a th:href="@{/questions/new}" class="btn btn-primary">질문 등록하기</a>
+        </div>
+    </div>
+</div>
