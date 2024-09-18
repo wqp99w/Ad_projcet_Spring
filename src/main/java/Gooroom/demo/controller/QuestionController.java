@@ -2,10 +2,12 @@ package Gooroom.demo.controller;
 
 import Gooroom.demo.domain.Question;
 import Gooroom.demo.service.QuestionService;
+import com.mysql.cj.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,4 +61,28 @@ public class QuestionController {
         return "Gooroom/question_detail";
     }
 
+    @PostMapping("/questions/delete/{question_id}")
+    public  String question_delete(@PathVariable Long question_id) {
+        questionService.delete(question_id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/questions/update/{question_id}")
+    public String updateQuestion(@PathVariable("question_id") Long question_id, Model model){
+        Optional<Question> question = questionService.findQuestion(question_id);
+        Question que = question.orElseThrow(() -> new NoSuchElementException("질문이 없습니다" + question_id));
+        model.addAttribute("question",que);
+        return "Gooroom/question_update";
+    }
+
+    @PostMapping("/questions/update/{question_id}")
+    public String update(@PathVariable Long question_id, QuestionForm questionForm){
+        Question question = new Question();
+        question.setAuthor(questionForm.getAuthor());
+        question.setContent(questionForm.getContent());
+        question.setSubject(questionForm.getSubject());
+        question.setCreate_date(LocalDateTime.now().toString());
+        questionService.update(question_id, questionForm);
+        return "redirect:/";
+    }
 }

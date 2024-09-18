@@ -23,7 +23,19 @@
             <footer class="blockquote-footer" th:text="${question.getAuthor()}">작성자</footer>
         </div>
     </div>
-    <a href="/" class="btn btn-primary mt-3">목록으로 돌아가기</a>
+
+    <!-- 버튼들이 같은 줄에 위치하도록 설정 -->
+    <div class="d-flex justify-content-start mt-3">
+        <a href="/" class="btn btn-primary mr-2">목록으로 돌아가기</a>
+        <a th:href="@{/questions/update/{question_id}(question_id=${question.getQuestion_id()})}" class="btn btn-warning mr-2">수정</a>
+
+        <!-- 삭제 버튼을 위한 폼 추가 -->
+        <form th:action="@{/questions/delete/{question_id}(question_id=${question.getQuestion_id()})}" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?')">
+            <!-- HTTP 메소드 변경을 위한 hidden input 추가 -->
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

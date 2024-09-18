@@ -1,5 +1,6 @@
 package Gooroom.demo.service;
 
+import Gooroom.demo.controller.QuestionForm;
 import Gooroom.demo.domain.Question;
 import Gooroom.demo.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,14 @@ public class QuestionService {
 
     public Optional<Question> findQuestion(Long question_id){
         return questionRepository.findById(question_id);
+    }
+
+    public void delete(Long question_id){
+        questionRepository.delete(question_id);
+    }
+
+    public Long update(Long quesion_id, QuestionForm questionForm){
+        questionRepository.update(quesion_id, questionForm);
+        return quesion_id;
     }
 }

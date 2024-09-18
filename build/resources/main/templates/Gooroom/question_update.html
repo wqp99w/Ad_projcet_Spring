@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AD project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-group label {
+            display: block;
+            margin-top: 10px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 500px; /* 폼 너비를 제한 */
+        }
+    </style>
+</head>
+<body>
+<div class="center-container">
+    <div class="container form-container">
+        <h1 class="text-center">질문 등록</h1>
+        <form id="question-form" th:action="@{/questions/update/{question_id}(question_id=${question.getQuestion_id()})}" method="post">
+            <div class="form-group">
+                <label for="subject">제목</label>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="제목을 입력하세요">
+                <label for="author">작성자</label>
+                <input type="text" id="author" name="author" class="form-control" placeholder="작성자를 입력하세요">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" class="form-control" placeholder="내용을 입력하세요" rows="5"></textarea>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">등록</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
