@@ -130,7 +130,7 @@ public class QuestionController {
 
 + Update
 
-<img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%EC%88%98%EC%A0%95.jpg" width="500" height="200"/>
+<img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%EC%88%98%EC%A0%95.jpg" width="500" height="500"/>
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%EC%88%98%EC%A0%95%EC%83%81%EC%84%B8.jpg" width="500" height="200"/>  
 
