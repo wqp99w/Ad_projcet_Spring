@@ -19,6 +19,7 @@
 
 ```java
 
+@Entity
 public class Question {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long question_id;
@@ -33,43 +34,53 @@ public class Question {
 }
 ```
 
-+ 안드로이드 앱과 스프링 서버의 통신을 위해 Restful API를 사용하여 안드로이드 앱과의 호환성을 높였습니다.
++ 데이터베이스의 핵심 개념을 표현하여 여러 계층에서 재사용할 수 있도록 설계하였습니다.
   
 
 ### [View]
 
+
+```java
+public class QuestionController {
+    @GetMapping("/")
+    public String question_list(Model model){
+        List<Question> questions =questionService.findQuestions().stream()
+                        .sorted((q1, q2) -> q2.getQuestion_id().compareTo(q1.getQuestion_id()))
+                                .collect(Collectors.toList());
+        model.addAttribute("questionList",questions);
+        return "Gooroom/question_list";
+    }
+    //중략
+}
 ```html
 
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>AD project</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<div class="container">
-    <h1 class="text-center">질문 상세</h1>
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div>
-                <h2 th:text="${question.getSubject()}">제목</h2>
-            </div>
-            <div>
-                <small class="small-text" th:text="${question.getCreate_date()}">2024-06-03 12:00</small>
-            </div>
-        </div>
-        <div class="card-body">
-            <p th:text="${question.getContent()}">내용</p>
-            <footer class="blockquote-footer" th:text="${question.getAuthor()}">작성자</footer>
-        </div>
-    </div>
+    <style>
+
+<!-- 중략 -->
+            <tbody>
+            <tr th:if="${questionList.empty}">
+                <td colspan="4" class="text-center">질문이 없습니다.</td>
+            </tr>
+            <tr th:each="question, questionStat : ${questionList}">
+                <td th:text="${question.getQuestion_id()}"></td>
+                <td>
+                    <a th:href="@{/questions/{question_id}(question_id=${question.getQuestion_id()})}"
+                       th:text="${question.getSubject()}"></a>
+                </td>
+                <td th:text="${question.getAuthor()}"></td>
+                <td th:text="${question.getCreate_date()}"></td>
+            </tr>
+            </tbody>
 <!-- 중략 -->
 
 ```
 
-+ 레포지토리를 이용하여 데이터 접근 로직을 레포지토리에서 처리하게 하여 유지보수성과 재사용성을 향상시켰습니다.
++ Thymeleaf와 Bootstrap을 사용하여 동적으로 데이터를 바인딩하여 클라이언트와 서버 간의 데이터의 통신을 원활하게 처리하였습니다.
 
 ### [Controller]
 
