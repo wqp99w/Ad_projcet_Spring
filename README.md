@@ -1,4 +1,4 @@
-# Spring MVC 패턴을 이용하여 웹페이지 CRUD 기능 구현 프로젝트
+# Spring MVC 패턴을 이용하여 웹페이지 CRUD 기능 구현
 
 2024.06
 
