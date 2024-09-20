@@ -19,27 +19,18 @@
 
 ```java
 
-@RestController
-@RequestMapping("/api")
-public class FoodController {
+public class Question {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long question_id;
+    private String author;
+    private String subject;
+    @Lob
+    private String content;
+    private String create_date;
 
-    private final FoodService foodService;
+//중략
 
-    public FoodController(FoodService foodService) {
-        this.foodService = foodService;
-    }
-
-    @GetMapping("/foods")
-    public List<Food> getAllFoods() {
-        return foodService.getAllFoods();
-    }
-
-    @GetMapping("/categoris")
-    public List<Food> findFoodByCategories(String cate1, String cate2) {
-        return foodService.findRandomFoodByCategories(cate1, cate2);
-    }
 }
-
 ```
 
 + 안드로이드 앱과 스프링 서버의 통신을 위해 Restful API를 사용하여 안드로이드 앱과의 호환성을 높였습니다.
@@ -47,15 +38,34 @@ public class FoodController {
 
 ### [View]
 
-```java
+```html
 
-public interface FoodRepository{
-    List<Food> findByCate1AndCate2(String cate1, String cate2);
-    List<Food> RandomfindBycate1Andcate2(String cate1, String cate2);
-
-    List<Food> findALL();
-
-}
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AD project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">질문 상세</h1>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <h2 th:text="${question.getSubject()}">제목</h2>
+            </div>
+            <div>
+                <small class="small-text" th:text="${question.getCreate_date()}">2024-06-03 12:00</small>
+            </div>
+        </div>
+        <div class="card-body">
+            <p th:text="${question.getContent()}">내용</p>
+            <footer class="blockquote-footer" th:text="${question.getAuthor()}">작성자</footer>
+        </div>
+    </div>
+<!-- 중략 -->
 
 ```
 
