@@ -120,7 +120,7 @@ public class QuestionController {
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%82%AD%EC%A0%9C%20%EA%B2%B0%EA%B3%BC.jpg" width="500" height="200"/>
 
-<img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%20%EB%93%B1%EB%A1%9D2.jpg" width="500" height="200"/>
+<img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%20%EB%93%B1%EB%A1%9D2.jpg" width="400" height="400"/>
 
 + Read
 
