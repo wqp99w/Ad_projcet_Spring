@@ -114,6 +114,12 @@ public class QuestionController {
 
 
 
-## 주요 기능능
+## 주요 기능
 
-[시연영상](https://www.youtube.com/watch?v=CxD3iMuHXOE)
++ Create
+
++ Read
+
++ Update
+
++ Delete
