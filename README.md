@@ -71,43 +71,40 @@ public class Question {
 
 + 레포지토리를 이용하여 데이터 접근 로직을 레포지토리에서 처리하게 하여 유지보수성과 재사용성을 향상시켰습니다.
 
-```java
-
-public class JpaFoodRepository implements FoodRepository{
-    private final EntityManager em;
-
-    public JpaFoodRepository(EntityManager em) {this.em = em; }
-
-    @Override
-    public List<Food> findByCate1AndCate2(String cate1, String cate2) {
-         return em.createQuery("select f from Food f where f.cate1 = :cate1 AND f.cate2 = :cate2", Food.class)
-                 .getResultList();
-    }
-
-    //중략
-}
-```
-
-+ JPA를 사용하여 코드의 생산성과 유지보수성을 향상 시켰습니다.
-  
 ### [Controller]
 
 ```java
 
-@Transactional
-public class FoodService {
-    private final FoodRepository foodRepository;
-    ///중략
+@Controller
+public class QuestionController {
 
-    public List<Food> getAllFoods() {
-        List<Food> foods = foodRepository.findALL();
-        foods.forEach(food -> System.out.println("Food: " + food.getFood() + ", Category1: " + food.getCate1() + ", Category2: " + food.getCate2()));
-        return foodRepository.findALL();
+//중략
+
+@GetMapping("/questions/new")
+    public String createQuestion(){
+        return "Gooroom/question_form";
     }
 
-    public List<Food> findRandomFoodByCategories(String cate1, String cate2) {
-        return foodRepository.RandomfindBycate1Andcate2(cate1, cate2);
+    @PostMapping("/questions/new")
+    public String create(QuestionForm questionForm){
+        Question question = new Question();
+        question.setAuthor(questionForm.getAuthor());
+        question.setContent(questionForm.getContent());
+        question.setSubject(questionForm.getSubject());
+        question.setCreate_date(LocalDateTime.now().toString());
+        questionService.question_Create(question);
+        return "redirect:/";
     }
+
+    @GetMapping("/questions/{question_id}")
+    public String question_detail(@PathVariable("question_id") Long question_id, Model model){
+        Optional<Question> question = questionService.findQuestion(question_id);
+        Question que = question.orElseThrow(() -> new NoSuchElementException("질문이 없습니다" + question_id));
+        model.addAttribute("question",que);
+        return "Gooroom/question_detail";
+    }
+
+//중략
 }
 
 ```
