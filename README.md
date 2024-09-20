@@ -13,9 +13,9 @@
 + Database : MySQL
 + IDE : InteliJ Ultimate
 
-## 주요 기능
+## 주요 구조
 
-### [Restful API]
+### [Model]
 
 ```java
 
@@ -45,7 +45,7 @@ public class FoodController {
 + 안드로이드 앱과 스프링 서버의 통신을 위해 Restful API를 사용하여 안드로이드 앱과의 호환성을 높였습니다.
   
 
-### [Repository]
+### [View]
 
 ```java
 
@@ -80,7 +80,7 @@ public class JpaFoodRepository implements FoodRepository{
 
 + JPA를 사용하여 코드의 생산성과 유지보수성을 향상 시켰습니다.
   
-### [Service]
+### [Controller]
 
 ```java
 
