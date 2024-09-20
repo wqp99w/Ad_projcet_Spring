@@ -122,6 +122,7 @@ public class QuestionController {
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%20%EB%93%B1%EB%A1%9D2.jpg" width="400" height="400"/>
 
++ 질문 등록 버튼을 눌러 새로운 질문을 등록할 수 있습니다.
 
 
 ### [Read]
@@ -130,7 +131,7 @@ public class QuestionController {
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%EC%83%81%EC%84%B8.jpg" width="700" height="200"/>  
 
-
++ 등록된 질문을 선택하여 상세 정보를 볼 수 있습니다.
 
 ### [Update]
 
@@ -138,7 +139,7 @@ public class QuestionController {
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%A7%88%EB%AC%B8%EC%88%98%EC%A0%95%EC%83%81%EC%84%B8.jpg" width="700" height="200"/>  
 
-
++ 수정 버튼을 눌러 질문의 정보를 변경할 수 있습니다.
 
 ### [Delete]
 
@@ -146,5 +147,5 @@ public class QuestionController {
 
 <img src="https://github.com/wqp99w/read-me_image/blob/main/webserver/%EC%82%AD%EC%A0%9C%20%EA%B2%B0%EA%B3%BC.jpg" width="700" height="200"/>  
 
-
++ 삭제 버튼을 눌러 질문을 삭제할 수 있습니다.
 
